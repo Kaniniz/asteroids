@@ -32,9 +32,15 @@ def main():
         updatable.update(dt)
 
         for ast in asteroids:
+            for bullet in shots:
+                if ast.collision_check(bullet):
+                    ast.split()
+                    bullet.kill()
+
             if ast.collision_check(player):
                 print("Game over!")
                 sys.exit()
+            
         
         screen.fill("Black")
         for item in drawable:
